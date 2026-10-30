@@ -8,6 +8,7 @@ public class CooperatingThreads {
     
     // Determines whose turn it is. Randomized to allow either thread to start first.
     private boolean numberTurn = false;
+    private SecureRandom random;
 
     public static void main(String[] args) {
 
@@ -16,9 +17,13 @@ public class CooperatingThreads {
         cooperatingThreads.Run();
     }
 
+    private CooperatingThreads() {
+        this.random = new SecureRandom();
+    }
+
     private void ChooseRandom() {
 
-        this.numberTurn = ((new SecureRandom()).nextInt(100) % 2) == 0;
+        this.numberTurn = (this.random.nextInt(100) % 2) == 0;
     }
 
     private void Run() {
